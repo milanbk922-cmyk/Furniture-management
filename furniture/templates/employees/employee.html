@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="empnav">
+        <div class= "nav1">
+            <a href="{%url 'home'%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2">Employees</div>
+        <div class= "nav3">
+            <span class="plus">
+                <i class="fa-solid fa-plus"></i>
+            </span>
+        </div>
+</header>
+{%endblock%}
+{%block content%}
+    <div class = "search_box">
+        <input type="text" placeholder="Search Employees...">
+    </div>
+    <div class = "employee_list">
+        <div class = "employee_card">
+            <div class = "employee_avatar">
+                Employee1
+            </div>
+        </div>
+    </div>
+{%endblock%}
