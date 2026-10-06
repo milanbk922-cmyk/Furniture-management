@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="navcontainer">
+        <div class= "nav1">
+            <a href="{%url 'employee'%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2">Add Employees</div>
+        <div class= "nav3"></div>
+</header>
+{%endblock%}
+{%block content%}
+{% comment %} Employee Form {% endcomment %}
+<form method="POST" class="employee-form">
+    {% csrf_token %}
+    {% comment %} Personal Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Personal Information </h2>
+        <div class="form-group">
+            <label for="name">Full Name</label><br>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter full name"
+                required
+            >
+        </div>
+</form>
+
+{%endblock%}
+{%block footer%}
+{%endblock%}

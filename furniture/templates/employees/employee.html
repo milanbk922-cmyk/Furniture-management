@@ -11,11 +11,13 @@
             </a>
         </div>
         <div class= "nav2">Employees</div>
+        <a href="{%url 'employee_form'%}" class="section">
         <div class= "nav3">
             <span class="plus">
                 <i class="fa-solid fa-plus"></i>
             </span>
         </div>
+        </a>
 </header>
 {%endblock%}
 {%block content%}
@@ -23,10 +25,12 @@
         <input type="text" placeholder="Search Employees...">
     </div>
     <div class = "employee_list">
+        <a href="{%url 'employee_detail'%}" class="section">
         <div class = "employee_card">
             <div class = "employee_avatar">
                 Employee1
             </div>
         </div>
+        </a>
     </div>
 {%endblock%}
