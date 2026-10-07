@@ -87,8 +87,31 @@ body{
 }
 .form-group input{
     padding: 15px;
+    width: 90%;
     border: none;
     border-radius: 10px;
+}
+#status{
+    padding: 7px;
+    border-radius:8px;
+}
+/* #status.active{
+    background-color:rgb(67, 245, 67);
+}
+#status.inactive{
+    background-color:rgb(255, 65, 65);
+} */
+.form-group button{
+    display: block;
+    margin:0 auto;
+    background-color:rgb(62, 61, 59);
+    color:antiquewhite;
+    border:none;
+    border-radius:10px;
+    padding:5px 2px;
+}
+.form-group button:active{
+    background-color:rgb(97, 96, 93);
 }
 
 .search_box{

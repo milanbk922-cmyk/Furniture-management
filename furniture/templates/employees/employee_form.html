@@ -31,6 +31,74 @@
                 required
             >
         </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label><br>
+            <input
+                type="text"
+                id="Phone Number"
+                name="Phone Number"
+                placeholder="98XXXXXXXX"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label><br>
+            <input
+                type="text"
+                id="Address"
+                name="Address"
+                placeholder="kathmandu,..."
+                required
+            >
+        </div>
+    </section>
+    {% comment %} Employement Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Employement Information </h2>
+        <div class="form-group">
+            <label for="position">Position</label><br>
+            <input
+                type="text"
+                id="Position"
+                name="Position"
+                placeholder="eg. carpenter"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="salary">Monthly Salary</label><br>
+            <input
+                type="number"
+                id="Salary"
+                name="Salary"
+                placeholder="eg. 25,000"
+                min="0"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="joining-date">Joining Date</label><br>
+            <input
+                type="date"
+                id="joining-date"
+                name="joining-date"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="Status">Status</label><br>
+            <select id="status" name="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+            </select>
+        </div>
+    </section>
+    {% comment %} submit {% endcomment %}
+    <div class="form-group">
+        <button type="submit" class="save-button">
+            Save Employee
+        </button>
+    </div>
 </form>
 
 {%endblock%}

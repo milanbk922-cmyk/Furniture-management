@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="navcontainer">
+        <div class= "nav1">
+            <a href="{%url 'employee'%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2"></div>
+        <div class= "nav3"></div>
+</header>
+{%endblock%}
+{%block content%}
+{% comment %} Employee Detail {% endcomment %}
+<div class="employee profile">
+    Image<br>
+    Full Name<br>
+    Status
+</div>
+<section class="form-section">
+    <h2>PERSONAL INFORMATION</h2>
+    <label for="phone">Phone </label><br>
+    98XXXXXXXX
+</section>
+{%endblock%}
+{%block footer%}
+{%endblock%}
