@@ -1,5 +1,144 @@
 {%extends "base.html"%}
 {%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="navcontainer">
+        <div class= "nav1">
+            <a href="{%url 'order'%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2">New Order</div>
+        <div class= "nav3"></div>
+</header>
+{%endblock%}
 {%block content%}
-<h1>This is the order adding form. </h1>
+{% comment %} Order Form {% endcomment %}
+<form method="POST" class="order-form">
+    {% csrf_token %}
+    {% comment %} Customer Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Customer Information </h2>
+        <div class="form-group">
+            <label for="name">Customer Name</label><br>
+            <input
+                type="text"
+                id="cname"
+                name="cname"
+                placeholder="Enter full name"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label><br>
+            <input
+                type="number"
+                id="cPhone_Number"
+                name="cPhone_Number"
+                placeholder="98XXXXXXXX"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label><br>
+            <input
+                type="text"
+                id="cAddress"
+                name="cAddress"
+                placeholder="pokhara,..."
+                required
+            >
+        </div>
+    </section>
+
+    {% comment %} Order Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Order Information </h2>
+        <div class="form-group">
+            <label for="name">Furniture/Product</label><br>
+            <input
+                type="text"
+                id="pname"
+                name="pname"
+                placeholder="sofa,bed..."
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label><br>
+            <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label><br>
+            <div class="price">
+                <div class="rs">Rs.</div>
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    required
+                >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="discount">Discount</label><br>
+            <div class="price">
+                <div class="rs">Rs.</div>
+                <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    required
+                >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="eassigned">Employee</label><br>
+            <select id="eassigned" name="eassigned" >
+                    <option value="e1">emp1</option>
+                    <option value="e2">emp2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Status">Status</label><br>
+            <select id="ostatus" name="ostatus">
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="expected-date">Expected Date</label><br>
+            <input
+                type="date"
+                id="expected-date"
+                name="expected-date"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label><br>
+            <textarea
+                id="notes"
+                name="notes"
+                placeholder="Special requirements..."
+                required
+            ></textarea>
+        </div>
+    </section>
+    {% comment %} submit {% endcomment %}
+    <div class="form-group">
+        <button type="submit" class="save-button">
+            Save Order
+        </button>
+    </div>
+</form>
+{%endblock%}
+{%block footer%}
 {%endblock%}

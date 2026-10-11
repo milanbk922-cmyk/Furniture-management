@@ -104,11 +104,12 @@ body{
 .form-group button{
     display: block;
     margin:0 auto;
+    margin-top:10px;
     background-color:rgb(62, 61, 59);
     color:antiquewhite;
     border:none;
     border-radius:10px;
-    padding:5px 2px;
+    padding:5px 5px;
 }
 .form-group button:active{
     background-color:rgb(97, 96, 93);
@@ -171,5 +172,36 @@ body{
     padding-left: 5px;
     padding-right: 5px;
     font-size: 20px;
+}
+.price{
+    display:flex;
+}
+.price input{
+    width:83%;
+    border-radius:0 10px 10px 0;
+}
+.rs{
+    background-color:white;
+    width:30px;
+    padding:10px;
+    border-radius:10px 0 0 10px;
+}
+#eassigned{
+    width:90%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+}
+#ostatus{
+    width:90%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+}
+.form-group textarea{
+    width:98%;
+    height:70px;
+    border:none;
+    border-radius:10px;
 }
 
