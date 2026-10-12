@@ -114,6 +114,15 @@ body{
 .form-group button:active{
     background-color:rgb(97, 96, 93);
 }
+button[name="edit_employee"]{
+    display:block;
+    margin:0 auto;
+    background-color:rgb(42, 41, 41);
+    color:antiquewhite;
+    border:none;
+    border-radius:10px;
+    padding:5px 5px;
+}
 
 .search_box{
     margin : 20px 5px;
@@ -203,5 +212,12 @@ body{
     height:70px;
     border:none;
     border-radius:10px;
+}
+.ord_detail{
+    font-size:16px;
+    background-color:rgb(254, 238, 222);
+    border-radius:8px;
+    padding:8px 8px;
+    padding-left:15px;
 }
 

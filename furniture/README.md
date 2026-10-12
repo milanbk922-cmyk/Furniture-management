@@ -386,6 +386,6 @@ After the basic employee and order management system is working, the project may
 
 ## 👨‍💻 Author
 
-**Milan**
+**Milan Bishwokarma**
 
 Furniture Management System

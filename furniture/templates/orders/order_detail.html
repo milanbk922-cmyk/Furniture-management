@@ -1,5 +1,56 @@
 {%extends "base.html"%}
 {%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="navcontainer">
+        <div class= "nav1">
+            <a href="{%url 'order'%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2"></div>
+        <div class= "nav3"></div>
+</header>
+{%endblock%}
 {%block content%}
-<h1>This is the order detail. </h1>
+<section class="form-section">
+    <label for="status"><p><b>ORDER STATUS </b></p></label>
+    <div class="ord_detail">
+        In Progress
+    </div>
+    <label for="customer"><p><b>CUSTOMER</b></p></label>
+    <div class="ord_detail">
+        Ram Thapa<br>
+         98xxxxxxxx<br>
+         pokhara,Nepal<br>
+    </div>
+    <label for="detail"><p><b>ORDER DETAILS </b></p></label>
+    <div class="ord_detail">
+        Wood Dinning table<br>
+        Quantity            1<br>
+        Price               Rs. 30000<br>
+        Discount            Rs. 2000<br>
+        Total               Rs. 28000
+    </div>
+    <label for="emp_assign"><p><b>ASSIGNED EMPLOYEE </b></p></label>
+    <div class="ord_detail">
+       Hari Bk<br>
+       carpenter
+    </div>
+    <label for="ord_date"><p><b>ORDERED DATE </b></p></label>
+    <div class="ord_detail">
+       2083/10/10
+    </div>
+    <label for="ord_date"><p><b>NOTES</b></p></label>
+    <div class="ord_detail">
+       Customer wants good quality wood.
+    </div>
+</section>
+<button type="submit" name="edit_employee">
+    Edit Employee
+</button>
+{%endblock%}
+{%block footer%}
 {%endblock%}
