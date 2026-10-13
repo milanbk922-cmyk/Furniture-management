@@ -11,7 +11,7 @@
             </a>
         </div>
         <div class= "nav2">Employees</div>
-        <a href="{%url 'employee_form'%}" class="section">
+        <a href="{%url 'employee_create'%}" class="section">
         <div class= "nav3">
             <span class="plus">
                 <i class="fa-solid fa-plus"></i>
@@ -25,12 +25,16 @@
         <input type="text" placeholder="Search Employees...">
     </div>
     <div class = "employee_list">
-        <a href="{%url 'employee_detail'%}" class="section">
+        {% for employee in employees%}
+        <a href="{%url 'employee_detail' employee.pk%}" class="section">
         <div class = "employee_card">
             <div class = "employee_avatar">
-                Employee1
+                {{ employee.name }}
             </div>
         </div>
-        </a>
+        </a><br>
+        {%empty%}
+        No employees found
+        {%endfor%}
     </div>
 {%endblock%}

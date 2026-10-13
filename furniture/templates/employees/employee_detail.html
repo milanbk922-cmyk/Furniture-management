@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <header class="navcontainer">
         <div class= "nav1">
-            <a href="{%url 'employee'%}" class="section" >
+            <a href="{%url 'employee_list'%}" class="section" >
             <span style="font-size: 20px;">
                 <i class="fa-solid fa-arrow-left"></i>
             </span>
@@ -18,24 +18,28 @@
 {% comment %} Employee Detail {% endcomment %}
 <div class="employee profile">
     Image<br>
-    Full Name<br>
-    Status
+    <strong>{{employee.name}}</strong><br>
+    {%if employee.status%}
+    <span style="color:#0ce70c";><strong>Active </strong></span>
+    {%else%}
+    <span style="color:red";>Inactive </span>
+    {%endif%}
 </div>
 <section class="form-section">
     <h2>PERSONAL INFORMATION</h2>
     <label for="phone"><p><b>Phone </b></p></label>
-    98XXXXXXXX <br>
+    {{employee.phone}} <br>
     <label for="address"><p><b>Address </b></p> </label>
-    kathmandu 
+    {{employee.address}} 
 </section>
 <section class="form-section">
     <h2>Employement</h2>
-    <label for="position"><p><b>Positiion </b></p> </label>
-    carpenter<br>
+    {% comment %} <label for="position"><p><b>Positiion </b></p> </label>
+    carpenter<br> {% endcomment %}
     <label for="salary"><p><b>Salary </b></p> </label>
-    Rs. 25000/month<br>
+    Rs.{{employee.salary}}/month<br>
     <label for="joining-date"> <p><b>Joining Date </b></p> </label>
-    2083/10/10
+    {{employee.joining_date}}
 </section>
 <section class="form-section">
     <h2>Order</h2>

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <header class="navcontainer">
         <div class= "nav1">
-            <a href="{%url 'employee'%}" class="section" >
+            <a href="{%url 'employee_list'%}" class="section" >
             <span style="font-size: 20px;">
                 <i class="fa-solid fa-arrow-left"></i>
             </span>
@@ -35,8 +35,8 @@
             <label for="phone">Phone Number</label><br>
             <input
                 type="text"
-                id="Phone_Number"
-                name="Phone_Number"
+                id="phone"
+                name="phone"
                 placeholder="98XXXXXXXX"
                 required
             >
@@ -45,8 +45,8 @@
             <label for="address">Address</label><br>
             <input
                 type="text"
-                id="Address"
-                name="Address"
+                id="address"
+                name="address"
                 placeholder="kathmandu,..."
                 required
             >
@@ -55,7 +55,7 @@
     {% comment %} Employement Information {% endcomment %}
     <section class= "form-section">
         <h2> Employement Information </h2>
-        <div class="form-group">
+        {% comment %} <div class="form-group">
             <label for="position">Position</label><br>
             <input
                 type="text"
@@ -64,13 +64,13 @@
                 placeholder="eg. carpenter"
                 required
             >
-        </div>
+        </div> {% endcomment %}
         <div class="form-group">
             <label for="salary">Monthly Salary</label><br>
             <input
                 type="number"
-                id="Salary"
-                name="Salary"
+                id="salary"
+                name="salary"
                 placeholder="eg. 25,000"
                 min="0"
                 required
@@ -80,8 +80,8 @@
             <label for="joining-date">Joining Date</label><br>
             <input
                 type="date"
-                id="joining-date"
-                name="joining-date"
+                id="joining_date"
+                name="joining_date"
                 required
             >
         </div>
