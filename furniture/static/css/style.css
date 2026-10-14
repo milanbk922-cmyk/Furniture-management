@@ -221,3 +221,26 @@ button[name="edit_employee"]{
     padding-left:15px;
 }
 
+/* employee edit */
+.edit_submit{
+    display:flex;
+    justify-content:space-between;
+}
+.edit_submit a{
+    text-decoration:none;
+}
+.cancel{
+    background-color:red;
+    width:70px;
+    color:white;
+    text-align:center;
+    border-radius:10px;
+    padding:5px 5px;
+}
+.save-button{
+    background-color:rgb(42, 41, 41);
+    color:antiquewhite;
+    border:none;
+    border-radius:10px;
+    padding:5px 5px;
+}

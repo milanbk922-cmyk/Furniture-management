@@ -1,0 +1,118 @@
+{%extends "base.html"%}
+{%load static%}
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="navcontainer">
+        <div class= "nav1">
+            <a href="{%url 'employee_detail' employee.pk%}" class="section" >
+            <span style="font-size: 20px;">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2">Edit Employee</div>
+        <div class= "nav3"></div>
+</header>
+{%endblock%}
+{%block content%}
+{% comment %} Employee Form {% endcomment %}
+<form method="POST" class="employee-form">
+    {% csrf_token %}
+    {% comment %} Personal Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Personal Information </h2>
+        <div class="form-group">
+            <label for="name">Full Name</label><br>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{employee.name}}"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label><br>
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                value="{{employee.phone}}"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label><br>
+            <input
+                type="text"
+                id="address"
+                name="address"
+                value="{{employee.address}}"
+                required
+            >
+        </div>
+    </section>
+    {% comment %} Employement Information {% endcomment %}
+    <section class= "form-section">
+        <h2> Employement Information </h2>
+        {% comment %} <div class="form-group">
+            <label for="position">Position</label><br>
+            <input
+                type="text"
+                id="Position"
+                name="Position"
+                placeholder="eg. carpenter"
+                required
+            >
+        </div> {% endcomment %}
+        <div class="form-group">
+            <label for="salary">Monthly Salary</label><br>
+            <input
+                type="number"
+                id="salary"
+                name="salary"
+                value="{{employee.salary}}"
+                min="0"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="joining-date">Joining Date</label><br>
+            <input
+                type="date"
+                id="joining_date"
+                name="joining_date"
+                value="{{employee.joining_date}}"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <label for="Status">Status</label><br>
+            <select id="status" name="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+            </select>
+        </div>
+    </section>
+    <br>
+    {% comment %} submit {% endcomment %}
+    <div class="edit_submit">   
+        <a href="{%url 'employee_detail' employee.pk%}">
+        <div class="cancel">
+            
+             Cancel
+             
+        </div>
+        </a>
+         
+        <div class="save_changes">
+            <button type="submit" class="save-button">
+                Save Changes
+            </button>
+        </div>
+    </div>
+</form>
+
+{%endblock%}
+{%block footer%}
+{%endblock%}
