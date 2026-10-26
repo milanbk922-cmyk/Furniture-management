@@ -29,7 +29,12 @@
         <a href="{%url 'employee_detail' employee.pk%}" class="section">
         <div class = "employee_card">
             <div class = "employee_avatar">
-                {{ employee.name }}
+                {{ employee.name }}<br>
+                {%if employee.status%}
+                <span style="color:#0ce70c; font-size:14px;" ;>Active </span>
+                {%else%}
+                <span style="color:red; font-size:14px" ;>Inactive </span>
+                {%endif%}
             </div>
         </div>
         </a><br>

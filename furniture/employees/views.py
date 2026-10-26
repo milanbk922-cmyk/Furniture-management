@@ -3,7 +3,7 @@ from .forms import EmployeeForm
 from .models import Employee
 # Create your views here.
 def employee_list(request):
-    employees = Employee.objects.all().order_by("joining_date")
+    employees = Employee.objects.all().order_by("-status","-joining_date")
     return render(request, "employees/employee.html", {"employees":employees})
 
 def employee_create(request):

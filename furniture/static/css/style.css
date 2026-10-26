@@ -195,18 +195,18 @@ button[name="edit_employee"]{
     padding:10px;
     border-radius:10px 0 0 10px;
 }
-#eassigned{
+#assigned_employee{
     width:90%;
     padding:10px;
     border:none;
     border-radius:10px;
 }
-#ostatus{
+/* #status{
     width:90%;
     padding:10px;
     border:none;
     border-radius:10px;
-}
+} */
 .form-group textarea{
     width:98%;
     height:70px;

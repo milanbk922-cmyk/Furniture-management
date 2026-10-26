@@ -10,7 +10,7 @@
             </a>
         </div>
         <div class= "nav2">Orders</div>
-        <a href="{%url 'order_form'%}" class="section">
+        <a href="{%url 'order_create'%}" class="section">
         <div class= "nav3">
             <span class="plus">
                 <i class="fa-solid fa-plus"></i>
@@ -24,12 +24,17 @@
         <input type="text" placeholder="Search Orders...">
     </div>
     <div class = "order_list">
-        <a href="{%url 'order_detail'%}" class="section">
+        {% for order in orders%}
+        <a href="{%url 'order_detail' order.pk%}" class="section">
         <div class = "order_card">
             <div class = "order_name">
-                Order1
+                {{order.customer_name}}<br>
+                <p style="font-size:14px">{{order.order_name}}</p>
             </div>
         </div>
-         </a>
+         </a><br>
+        {%empty%}
+        No orders found
+        {%endfor%}
     </div>
 {%endblock%}
