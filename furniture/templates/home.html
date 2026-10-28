@@ -1,6 +1,75 @@
 {%extends "base.html"%}
-{%block content%}
 {%load static%}
-<h1 class="home">Welcome Back, Admin</h1>
+{%load nepali_filters%}
+{%block content%}
+<br>
+<strong style="font-weight:600;font-size:20px">Welcome Back, Admin!</strong>
+<p>Here's what's happening with your furniture bussiness.</p>
+
+<div class="stats-grid">
+
+    <!-- 1. Active Employees -->
+    <div class="stat-card blue">
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="10" cy="7" r="4"/>
+                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+        </div>
+        <p>Active Employees</p>
+        <h3>{{ context.active_employees }}</h3>
+        <span>out of {{ context.total_employees }} total</span>
+    </div>
+
+    <!-- 2. Total Orders -->
+    <div class="stat-card green">
+        <div class="stat-icon">▤</div>
+        <p>Total Orders</p>
+        <h3>{{ context.total_orders }}</h3>
+        <span>all time</span>
+    </div>
+
+    <!-- 3. Pending Orders -->
+    <div class="stat-card orange">
+        <div class="stat-icon">◷</div>
+        <p>Pending Orders</p>
+        <h3>{{ context.pending_orders }}</h3>
+        <span>need attention</span>
+    </div>
+
+    <!-- 4. In Progress Orders -->
+    <div class="stat-card purple">
+        <div class="stat-icon">◴</div>
+        <p>In Progress Orders</p>
+        <h3>{{ context.in_progress_orders }}</h3>
+        <span>being processed</span>
+    </div>
+
+    <!-- 5. Completed Orders -->
+    <div class="stat-card teal">
+        <div class="stat-icon">✓</div>
+        <p>Completed Orders</p>
+        <h3>{{ context.completed_orders }}</h3>
+        <span>completed orders</span>
+    </div>
+
+    <!-- 6. Total Order Value -->
+    <div class="stat-card red">
+        <div class="stat-icon">रु</div>
+        <p>Total Order Value</p>
+        <h3>Rs. {{ context.total_order_value|nepali_comma }}</h3>
+        <span>total order amount</span>
+    </div>
+
+</div>
 
 {%endblock%}
