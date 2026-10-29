@@ -51,11 +51,11 @@
        {{order.notes}}
     </div>
 </section>
-<a href="{%url 'order_edit' order.pk %}">
 <button type="submit" name="edit_employee">
+    <a href="{%url 'order_edit' order.pk %}" class="edit_button">
     Edit Order
+    </a>
 </button>
-</a>
 {%endblock%}
 {%block footer%}
 {%endblock%}

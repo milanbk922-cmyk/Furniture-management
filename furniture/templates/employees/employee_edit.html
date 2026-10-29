@@ -104,13 +104,12 @@
     <br>
     {% comment %} submit {% endcomment %}
     <div class="edit_submit">   
-        <a href="{%url 'employee_detail' employee.pk%}">
         <div class="cancel">
-            
+            <a href="{%url 'employee_detail' employee.pk%}" class="a_cancel">
              Cancel
-             
+           </a>  
         </div>
-        </a>
+
          
         <div class="save_changes">
             <button type="submit" class="save-button">

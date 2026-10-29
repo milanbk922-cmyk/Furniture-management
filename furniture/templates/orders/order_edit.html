@@ -163,14 +163,12 @@
     </section>
     {% comment %} submit {% endcomment %}
     <div class="edit_submit">   
-        <a href="{%url 'order_detail' order.pk%}">
         <div class="cancel">
-            
+             <a href="{%url 'order_detail' order.pk%}" class="a_cancel">
              Cancel
-             
+             </a>
         </div>
-        </a>
-         
+        
         <div class="save_changes">
             <button type="submit" class="save-button">
                 Save Changes
