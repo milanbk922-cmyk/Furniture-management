@@ -26,15 +26,15 @@
             </svg>
         </div>
         <p>Active Employees</p>
-        <h3>{{ context.active_employees }}</h3>
-        <span>out of {{ context.total_employees }} total</span>
+        <h3>{{ active_employees }}</h3>
+        <span>out of {{ total_employees }} total</span>
     </div>
 
     <!-- 2. Total Orders -->
     <div class="stat-card green">
         <div class="stat-icon">▤</div>
         <p>Total Orders</p>
-        <h3>{{ context.total_orders }}</h3>
+        <h3>{{ total_orders }}</h3>
         <span>all time</span>
     </div>
 
@@ -42,7 +42,7 @@
     <div class="stat-card orange">
         <div class="stat-icon">◷</div>
         <p>Pending Orders</p>
-        <h3>{{ context.pending_orders }}</h3>
+        <h3>{{ pending_orders }}</h3>
         <span>need attention</span>
     </div>
 
@@ -50,7 +50,7 @@
     <div class="stat-card purple">
         <div class="stat-icon">◴</div>
         <p>In Progress Orders</p>
-        <h3>{{ context.in_progress_orders }}</h3>
+        <h3>{{ in_progress_orders }}</h3>
         <span>being processed</span>
     </div>
 
@@ -58,7 +58,7 @@
     <div class="stat-card teal">
         <div class="stat-icon">✓</div>
         <p>Completed Orders</p>
-        <h3>{{ context.completed_orders }}</h3>
+        <h3>{{ completed_orders }}</h3>
         <span>completed orders</span>
     </div>
 
@@ -66,10 +66,42 @@
     <div class="stat-card red">
         <div class="stat-icon">रु</div>
         <p>Total Order Value</p>
-        <h3>Rs. {{ context.total_order_value|nepali_comma }}</h3>
+        <h3>Rs. {{ total_order_value|nepali_comma }}</h3>
         <span>total order amount</span>
     </div>
 
 </div>
+<div class="order_data">
+    <div class="recent_orders">
+        <div class="recent">Recent Orders</div>
+        <div class="view_all">View all &#10140;</div>
+    </div>
+    <div class="row_header">
+        <div><strong>Customer</strong></div>
+        <div><strong>Product</strong></div>
+        <div><strong>Status</strong></div>
+        <div><strong>Date</strong></div>
+    </div>
 
+    {%for order in recent_orders%}
+    <div class="order_row">
+        <div>{{order.customer_name}}</div>
+        <div>{{order.order_name}}</div>
+        <div>{{order.get_status_display}}</div>
+        <div>{{order.order_date|date:"M d, Y"}}</div>
+    </div>
+    {%empty%}
+    No orders found. Add your first order to see it here.
+    {%endfor%}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {%endblock%}

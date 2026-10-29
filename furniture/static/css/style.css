@@ -13,27 +13,27 @@ textarea {
 }
 
 /* home navbar */
-.header {
-    width: 100%;
-}
 .navcontainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height:50px;
-    background-color:rgb(248, 220, 175);
+    background-color:#223754;
 }
 .nav1 {
-    background-color:rgb(248, 220, 175);
+    background-color:#223754;
+    color:white;
 }
 .nav2 {
-    background-color:rgb(248, 220, 175);
+    background-color:#223754;
+    color:white;
     font-size: 20px;
     font-weight: bold;
 }
 .nav3 {
-    background-color:rgb(248, 220, 175);
+    background-color:#223754;
+    color:white;
 }
 .bell {
     font-size: 22px;
@@ -44,6 +44,10 @@ textarea {
 
 body{
     background-color:rgb(247 229 200);
+    margin:0px;
+}
+main{
+    margin:8px;
 }
 /* .home{
     text-align:center;
@@ -86,7 +90,8 @@ body{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color:rgb(248, 220, 175);
+    height:40px;
+    background-color:#223754;
 }
 .plus{
     font-size: 22px;
@@ -178,7 +183,8 @@ button[name="edit_employee"]{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color:rgb(248, 220, 175);
+    height: 40px;
+    background-color:#223754;
 }
 .order_list{
     margin :15px 5px;
@@ -375,4 +381,45 @@ button[name="edit_employee"]{
     .stat-card h3 {
         font-size: 21px;
     }
+}
+/* recent orders */
+.order_data{
+    border:solid rgb(80, 79, 79, 0.1) 1px;
+    border-radius:5px;
+}
+.recent_orders{
+    background:rgb(241, 240, 226);
+    display:flex;
+    justify-content:space-between;
+    padding:10px;
+    border-radius:9px;
+}
+.recent{
+    font-size:15px;
+    font-weight:600;
+}
+.view_all{
+    color:#1f52a3;
+    font-size:13px;
+    font-weight:600;
+}
+
+.row_header,.order_row{
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1.2fr;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+}
+.row_header > div,
+.order_row > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.row_header{
+    font-size:15px;
+}
+.order_row{
+    background:rgb(241, 240, 226);
+    font-size:11px;
 }

@@ -10,6 +10,8 @@ def dashboard_view(request):
     total_order_value = sum(
         order.total_price for order in orders
         )
+    recent_orders = Order.objects.order_by("-order_date")[:5]
+
     context = {
         "total_employees" : Employee.objects.count(),
         "active_employees" : Employee.objects.filter(
@@ -25,7 +27,8 @@ def dashboard_view(request):
         "completed_orders" : Order.objects.filter(
             status="completed"
         ).count(),
-        "total_order_value":int(total_order_value)
+        "total_order_value":int(total_order_value),
+        "recent_orders": recent_orders,
     }
-    return render(request, "home.html", {'context':context})
+    return render(request, "home.html", context)
 
