@@ -1,0 +1,14 @@
+{%load static%}
+<div class="sidebarOverlay" id="sidebarOverlay" 
+    onclick="closeSidebar()"></div>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h3>Attendance&Payroll</h3>
+        <button class="close-btn" onclick="closeSidebar()">&times;
+        </button>
+    </div>
+    <nav class="sidebar-menu">
+        <a href="{%url 'attendance_list'%}">📅Daily Attendance list</a>
+        <a href="{%url 'monthly_salary_list'%}">💰Monthly salary</a>
+    </nav>
+</aside>

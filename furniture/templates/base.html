@@ -16,6 +16,7 @@
     {%block navbar%}
     {%include 'includes/navbar.html'%}
     {% endblock %}
+    {%include 'includes/sidebar.html'%}
     <main>
         {%block content%}
         {%endblock%}
@@ -23,5 +24,6 @@
     {%block footer%}
     {%include 'includes/footer.html'%}
     {%endblock%}
+    <script src="{%static 'js/sidebar.js'%}"></script>
 </body>
 </html>
