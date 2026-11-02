@@ -25,6 +25,9 @@
     {%include 'includes/footer.html'%}
     {%endblock%}
     <script src="{%static 'js/sidebar.js'%}"></script>
+    <script>
+    const selectedDate = "{{ selected_date|date:'Y-m-d' }}";
+    </script>
     <script src="{%static 'js/calender.js'%}"></script>
 </body>
 </html>

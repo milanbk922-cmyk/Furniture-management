@@ -2,7 +2,6 @@ const calendar = document.getElementById("calendar");
 const monthYear = document.getElementById("monthYear");
 
 const today = new Date();
-
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 
@@ -50,6 +49,22 @@ function displayCalendar() {
         const div = document.createElement("div");
         div.className = "date";
         div.textContent = day;
+
+        const dateString =
+            `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+        // Highlight selected date
+        if (dateString === selectedDate) {
+            div.classList.add("selected");
+        }
+
+        // Click event
+        div.addEventListener("click", function() {
+
+            window.location.href =
+                `/sidebar/attendance/?date=${dateString}`;
+
+        });
 
         const weekday = new Date(
             currentYear, currentMonth, day

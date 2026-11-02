@@ -581,11 +581,15 @@ button:hover {
     background: #eee;
     border-radius: 5px;
 }
+.date.selected{
+    background: #617493;
+    color:white;
+}
 
 .date.today {
     background: #1976d2;
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
     border-radius:50%;
 }
 
