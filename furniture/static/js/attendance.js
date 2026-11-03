@@ -105,3 +105,41 @@ function changeMonth(value) {
 }
 
 displayCalendar();
+
+
+ // Change status badge color
+
+function updateStatusColor(select) {
+
+    select.classList.remove(
+        "Present",
+        "Absent",
+        "Hours"
+    );
+
+    let value = select.value;
+
+    if (value === "Present") {
+        select.classList.add("Present");
+    }
+
+    else if (value === "Absent") {
+        select.classList.add("Absent");
+    }
+
+    else if (value === "Hours") {
+        select.classList.add("Hours");
+    }
+
+}
+
+
+// Set initial status colors
+
+document.querySelectorAll(
+    ".status-select"
+).forEach(function(select) {
+
+    updateStatusColor(select);
+
+});

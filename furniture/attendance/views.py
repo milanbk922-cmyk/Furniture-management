@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.dateparse import parse_date
 from django.db import transaction
 from .models import Employee, Attendance
@@ -11,7 +11,7 @@ def attendance(request):
     if not selected_date:
         from django.utils import timezone
         selected_date = timezone.localdate()
-    employees = Employee.objects.all()
+    employees = Employee.objects.filter(status=True)
     attendance_records = Attendance.objects.filter(
         date= selected_date
     )
@@ -39,7 +39,7 @@ def save_attendance(request):
     if not selected_date:
         return redirect(attendance)
     with transaction.atomic():
-        for employee in Employee.objects.all:
+        for employee in Employee.objects.filter(status=True):
             status = request.POST.get(
                 f'attendance_{employee.id}'
             )
@@ -49,6 +49,9 @@ def save_attendance(request):
                     date=selected_date,
                     defaults={'status':status}
                 )
-    return redirect(f'/attendance/?date={selected_date}')
+    return redirect(f'/sidebar/attendance/?date={selected_date}')
+def attendance_detail(request,pk):
+    employee = get_object_or_404(Employee,pk=pk)
+    return render(request, 'attendances/attendance_detail.html',{'employee':employee})
 def monthly_salary_list(request):
     return render(request, 'attendances/monthlysalary.html')

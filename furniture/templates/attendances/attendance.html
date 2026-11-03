@@ -27,5 +27,61 @@
     <div class="days" id="calendar"></div>
 
 </div>
+<div class = "search_box">
+    <input type="text" placeholder="Search employees...">
+</div>
+<form method="POST"
+        action="{% url 'save_attendance' %}">
 
+    {% csrf_token %}
+
+    <input
+        type="hidden"
+        name="date"
+        value="{{ selected_date|date:'Y-m-d' }}"
+    >
+<div class = "employee_list">
+    {% for items in employee_data%}
+    <div class = "emp-attendance">
+        <div class = "profile"></div>
+        <div class="emp-name">{{ items.employee }}</div>
+        <div class="attendance">
+            <select
+                    name="attendance_{{ items.employee.id }}"
+                    class="status-select"
+                    onchange="updateStatusColor(this)"
+            >
+
+                <option value="Present"
+                    {% if items.status == 'Present' %}selected{% endif %}>
+                    Present
+                </option>
+
+                <option value="Hours"
+                    {% if items.status == 'Hours' %}selected{% endif %}>
+                    Hours
+                </option>
+
+                <option value="Absent"
+                    {% if items.status == 'Absent' %}selected{% endif %}>
+                    Absent
+                </option>
+            </select>
+        </div>
+        <div class="att-arrow">
+            <a href="{%url 'attendance_detail' items.employee.pk%}">
+                ❯
+            </a>
+        </div>
+    </div>
+   <br>
+    {%empty%}
+    No employees found
+    {%endfor%}
+</div>
+<button type="submit" class="save-btn">
+        Save Attendance
+</button>
+
+</form>
 {%endblock%}
