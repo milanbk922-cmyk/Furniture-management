@@ -2,8 +2,13 @@ const calendar = document.getElementById("calendar");
 const monthYear = document.getElementById("monthYear");
 
 const today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
+
+// Initialize calendar using URL date
+let currentDate = selectedDate
+    ? new Date(selectedDate + "T00:00:00")
+    : today;
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 
 const weekdays = [
     "Sun", "Mon", "Tue", "Wed",
