@@ -31,6 +31,7 @@
     <input type="text" placeholder="Search employees...">
 </div>
 <form method="POST"
+        id="attendance-form"
         action="{% url 'save_attendance' %}">
 
     {% csrf_token %}
@@ -41,6 +42,7 @@
         name="date"
         value="{{ selected_date|date:'Y-m-d' }}"
     >
+</form>
 <div class = "employee_list">
     {% for items in employee_data%}
     <div class = "emp-attendance">
@@ -50,6 +52,7 @@
             <select
                     name="attendance_{{ items.employee.id }}"
                     class="status-select"
+                    form="attendance-form"
                     onchange="updateStatusColor(this)"
             >
 
@@ -69,20 +72,92 @@
                 </option>
             </select>
         </div>
-        <div class="att-arrow">
-            <a href="{%url 'attendance_detail' items.employee.pk%}">
-                ❯
-            </a>
+        <button
+            type="button"
+            class="att-arrow"
+            onclick="toggleMoney('money-{{items.employee.id}}', this)"
+        >
+            ❯
+        </button>
+    </div>
+
+    {% comment %} Expandable money section {% endcomment %}
+    <div 
+        id="money-{{items.employee.id}}"
+        class="money-section"
+        style="display: none;"
+    >
+        <h4>Money Taken</h4>
+        <p style="color: #617493;">
+            Date: {{selected_date|date:"d M Y"}}
+        </p>
+
+        {% comment %} Previous transaction {% endcomment %}
+        {%if items.money_transactions%}
+            <h5>Previous Transactions</h5>
+            {%for money in items.money_transactions%}
+                <div class="money-record">
+                    <span style="color: #888;">
+                        Rs. {{money.amount}}
+                    </span>
+                    <small style="color: #888">
+                        {{money.reason|default:"No reason"}}
+                    </small>
+                </div>
+            {%endfor%}
+        {%else%}
+            <p>No money taken on this date.</p>
+        {%endif%}
+
+        {% comment %} Total {% endcomment %}
+        <div class="money-total">
+            <strong>Total Taken:</strong>
+            <strong>
+                Rs. {{items.total_taken}}
+            </strong>
         </div>
+
+        {% comment %} Add new money {% endcomment %}
+        <form 
+            method="POST"
+            action="{%url 'save_employee_money'%}"
+        >
+            {%csrf_token%}
+            <input
+            type="hidden"
+            name="employee_id"
+            value="{{items.employee.id}}"
+            >
+            <input
+            type="hidden"
+            name="date"
+            value="{{selected_date|date:'Y-m-d'}}"
+            >
+            <input
+            type="number"
+            name="amount"
+            placeholder="Enter amount (Rs.)"
+            min="0.01"
+            step="0.01"
+            required
+            >
+            <input
+            type="text"
+            name="reason"
+            placeholder="Reason (optional)"
+            >
+            <button type="submit">
+                Save Amount
+            </button>
+        </form>
     </div>
    <br>
-    {%empty%}
-    No employees found
-    {%endfor%}
 </div>
-<button type="submit" class="save-btn">
-        Save Attendance
-</button>
+{%empty%}
+No employees found
+{%endfor%}
 
-</form>
+<button type="submit" form="attendance-form" class="save-btn">
+    Save Attendance
+</button>
 {%endblock%}

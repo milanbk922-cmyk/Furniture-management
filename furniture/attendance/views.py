@@ -48,7 +48,7 @@ def attendance(request):
                 'status':attendance_map.get(
                     employee.id,"Not Marked"
                 ),
-                'money_taransactions': transactions,
+                'money_transactions': transactions,
                 'total_taken':total_taken,
             })
     

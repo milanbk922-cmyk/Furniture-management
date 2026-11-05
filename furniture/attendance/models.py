@@ -39,5 +39,6 @@ class EmployeeMoneyTaken(models.Model):
         max_length = 250,
         blank = True
     )
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"{self.employee.name} - Rs. {self.amount} - {self.date}"

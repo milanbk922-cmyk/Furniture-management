@@ -137,8 +137,6 @@ function updateStatusColor(select) {
     }
 
 }
-
-
 // Set initial status colors
 
 document.querySelectorAll(
@@ -148,3 +146,19 @@ document.querySelectorAll(
     updateStatusColor(select);
 
 });
+
+// expandable amont taken
+function toggleMoney(sectionId, button) {
+
+    const section = document.getElementById(sectionId);
+
+    if (!section) return;
+
+    if (section.style.display === "none") {
+        section.style.display = "block";
+        button.classList.add("active");
+    } else {
+        section.style.display = "none";
+        button.classList.remove("active");
+    }
+}

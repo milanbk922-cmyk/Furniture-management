@@ -554,10 +554,6 @@ button[name="edit_employee"]{
     cursor: pointer;
 }
 
-button:hover {
-    background: #0d47a1;
-}
-
 #monthYear {
     font-size: 20px;
     font-weight: bold;
@@ -651,24 +647,72 @@ button:hover {
     color: #3868dc;
 }
 .att-arrow{
-    width:5%;
-    display:flex;
-    align-items:center;
-    font-size:25px;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+    border: none;
+    background: transparent !important;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
 }
-.att-arrow a{
-    text-decoration:none;
-    color: rgb(147, 147, 147);
-    font-size:25px;
+.att-arrow.active{
+    transform: rotate(-90deg);
 }
 .save-btn{
-    display:block;
-    margin:0 auto;
-    padding: 14px;
+    display: block;
+    margin: 15px auto;
+    /* width: fit-content; */
+    /* position: static; */
+    padding:10px;
     background: #1769f5;
     color: white;
     border: none;
     border-radius: 9px;
     font-size: 13px;
-    font-weight: bold
+    font-weight: bold;
+}
+.save-btn:active{
+    transform: scale(1.1);
+}
+/* expandable money taken section */
+.money-section {
+    background: #f5f8fc;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.money-record {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: white;
+    border-radius: 8px;
+}
+
+.money-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.money-section input {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.money-section button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #1769f5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 8px;
 }
