@@ -56,20 +56,21 @@
                     onchange="updateStatusColor(this)"
             >
 
-                <option value="Present"
-                    {% if items.status == 'Present' %}selected{% endif %}>
+                <option value="10"
+                    {%if items.status == 10%}selected{%endif%}>
                     Present
                 </option>
-
-                <option value="Hours"
-                    {% if items.status == 'Hours' %}selected{% endif %}>
-                    Hours
+                {%for hour in "123456789"%}
+                <option value="{{ hour }}"
+                    {%if items.status == forloop.counter%}selected{%endif%}>
+                    {{hour}} Hour
                 </option>
-
-                <option value="Absent"
-                    {% if items.status == 'Absent' %}selected{% endif %}>
+                {%endfor%}
+                <option value="0"
+                    {%if items.status == 0%}selected{%endif%}>
                     Absent
                 </option>
+
             </select>
         </div>
         <button
@@ -106,7 +107,7 @@
                 </div>
             {%endfor%}
         {%else%}
-            <p>No money taken on this date.</p>
+            <p style="color: #888;">No money taken on this date.</p>
         {%endif%}
 
         {% comment %} Total {% endcomment %}
@@ -119,6 +120,7 @@
 
         {% comment %} Add new money {% endcomment %}
         <form 
+            id="employee_money_taken"
             method="POST"
             action="{%url 'save_employee_money'%}"
         >

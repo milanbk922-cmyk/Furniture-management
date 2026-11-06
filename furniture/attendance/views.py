@@ -46,7 +46,7 @@ def attendance(request):
             {
                 'employee':employee,
                 'status':attendance_map.get(
-                    employee.id,"Not Marked"
+                    employee.id, 10
                 ),
                 'money_transactions': transactions,
                 'total_taken':total_taken,
@@ -67,11 +67,14 @@ def save_attendance(request):
             status = request.POST.get(
                 f'attendance_{employee.id}'
             )
-            if status in ['Present','Absent','Hours']:
+            if status in [
+                '0','1','2','3','4',
+                '5','6','7','8','9','10'
+                ]:
                 Attendance.objects.update_or_create(
                     employee=employee,
                     date=selected_date,
-                    defaults={'status':status}
+                    defaults={'status':int(status)}
                 )
     return redirect(f'/sidebar/attendance/?date={selected_date}')
 

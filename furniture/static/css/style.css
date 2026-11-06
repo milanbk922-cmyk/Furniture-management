@@ -624,7 +624,7 @@ button[name="edit_employee"]{
     display:flex;
     align-items:center;
 }
-.attendance select{
+.status-select{
     border: none;
     outline: none;
     border-radius: 10px;
@@ -632,17 +632,17 @@ button[name="edit_employee"]{
     padding:5px 0;
 }
 /* status color */
- .Present {
+ .status-select.present {
     background: #d9f5e5;
     color: #169b50;
 }
 
-.Absent {
+.status-select.absent {
     background: #ffe1e1;
     color: #e34d4d;
 }
 
-.Hours {
+.status-select.hours{
     background: #e1eaff;
     color: #3868dc;
 }

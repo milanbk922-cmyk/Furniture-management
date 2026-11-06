@@ -117,23 +117,23 @@ displayCalendar();
 function updateStatusColor(select) {
 
     select.classList.remove(
-        "Present",
-        "Absent",
-        "Hours"
+        "present",
+        "absent",
+        "hours"
     );
 
     let value = select.value;
 
-    if (value === "Present") {
-        select.classList.add("Present");
+    if (value === "10") {
+        select.classList.add("present");
     }
 
-    else if (value === "Absent") {
-        select.classList.add("Absent");
+    else if (value === "0") {
+        select.classList.add("absent");
     }
 
-    else if (value === "Hours") {
-        select.classList.add("Hours");
+    else{
+        select.classList.add("hours");
     }
 
 }
