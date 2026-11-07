@@ -115,4 +115,5 @@ def attendance_detail(request,pk):
     employee = get_object_or_404(Employee,pk=pk)
     return render(request, 'attendances/attendance_detail.html',{'employee':employee})
 def monthly_salary_list(request):
-    return render(request, 'attendances/monthlysalary.html')
+    employees = Employee.objects.filter(status=True)
+    return render(request, 'attendances/monthlysalary.html',{'employees':employees})

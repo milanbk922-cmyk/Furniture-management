@@ -1,0 +1,48 @@
+{%extends "base.html"%}
+
+{%block navbar%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<header class="attendance_nav">
+        <div class= "nav1">
+            <a href="{%url 'dashboard'%}" class="section" >
+            <span style="font-size: 20px; color: white">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
+            </a>
+        </div>
+        <div class= "nav2_attendance">Monthly Salary</div> 
+</header>
+{%endblock%}
+
+{%block content%}
+<div class="monthly-card blue">
+    <h4>Total Months Salary</h4>
+    <h3>Rs. 1,02,000</h3>
+    <span>6 Employees</span>
+</div><br>
+
+<div class="stats-grid">
+    <div class="monthly-card green">
+        <div class="stat-paid">✓</div>
+        <h3>4</h3>
+        <p> Paid Employees</p>
+    </div>
+    <div class="monthly-card purple">
+        <div class="stat-paid">◷</div>
+        <h3>5</h3>
+        <p>Pending Payments</p>
+    </div>
+</div>
+<div class="employee-salary">
+    <h3 style="padding-left:10px; color:rgb(52, 52, 52);">Employee Salary</h3>
+    <div class = "search_box">
+        <input type="text" placeholder="Search employees...">
+    </div>
+    {%for employee in employees%}
+    <div class="salary-card">
+        <div class = "profile"></div>
+        <div class="emp-name">{{employee.name }}</div>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
