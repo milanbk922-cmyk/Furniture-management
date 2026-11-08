@@ -90,7 +90,7 @@ main{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height:40px;
+    height:50px;
     background-color:#223754;
 }
 .plus{
@@ -183,7 +183,7 @@ button[name="edit_employee"]{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 40px;
+    height: 50px;
     background-color:#223754;
 }
 .order_list{
@@ -518,7 +518,7 @@ button[name="edit_employee"]{
     justify-content:flex-start;
     align-items:center;
     width: 100%;
-    height: 40px;
+    height: 50px;
     background-color:#223754;
 }
 .nav2_attendance{
@@ -784,3 +784,59 @@ button[name="edit_employee"]{
     border-color: #e6ddff;
 }
 .purple .stat-paid { background: #8170ec; }
+/* employee salary in monthly salary */
+.employee-salary {
+  width: 98%;
+  background: #eff6ff;
+  border: 1px solid #d8e8ff;
+  border-radius: 13px;
+  overflow: hidden;
+}
+.employee {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #7c7c7c;
+  gap: 10px;
+}
+
+.employee:last-child {
+  border-bottom: none;
+}
+.employee-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.employee-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.paid {
+  color: #00d66b;
+  background: #bfedd6;
+}
+
+.pending {
+  color: #ff7514;
+  background: #351b0b;
+}
+.salary-arrow a {
+    text-decoration:none;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+}

@@ -33,16 +33,20 @@
         <p>Pending Payments</p>
     </div>
 </div>
-<div class="employee-salary">
+<section class="employee-salary">
     <h3 style="padding-left:10px; color:rgb(52, 52, 52);">Employee Salary</h3>
     <div class = "search_box">
         <input type="text" placeholder="Search employees...">
     </div>
     {%for employee in employees%}
-    <div class="salary-card">
-        <div class = "profile"></div>
-        <div class="emp-name">{{employee.name }}</div>
+    <div class="employee">
+      <div class="profile"></div>
+      <div class="employee-info">
+        <h3>{{employee.name}}</h3>
+      </div>
+      <span class="status paid">Paid</span>
+      <div class="salary-arrow"><a href="{%url 'salary_detail' employee.pk%}">❯</a></div>
     </div>
     {%endfor%}
-</div>
+</section>
 {%endblock%}
