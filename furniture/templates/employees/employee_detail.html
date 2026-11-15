@@ -16,14 +16,14 @@
 {%endblock%}
 {%block content%}
 {% comment %} Employee Detail {% endcomment %}
-<div class="employee profile">
-    Image<br>
-    <strong>{{employee.name}}</strong><br>
-    {%if employee.status%}
+<div class="employee_profile">
+    <div class="pp">Image</div><br>
+    <div><strong>{{employee.name}}</strong></div>
+    <div>{%if employee.status%}
     <span style="color:#0ce70c";><strong>Active </strong></span>
     {%else%}
     <span style="color:red";>Inactive </span>
-    {%endif%}
+    {%endif%}</div>
 </div>
 <section class="form-section">
     <h2>PERSONAL INFORMATION</h2>
