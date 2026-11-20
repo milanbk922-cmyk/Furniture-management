@@ -111,9 +111,10 @@ def save_employee_money(request):
 
     return redirect(f'/sidebar/attendance/?date={selected_date}')
 
-def salary_detail(request,pk):
-    employee = get_object_or_404(Employee,pk=pk)
-    return render(request, 'attendances/salary_detail.html',{'employee':employee})
 def monthly_salary_list(request):
     employees = Employee.objects.filter(status=True)
     return render(request, 'attendances/monthlysalary.html',{'employees':employees})
+
+def salary_detail(request,pk):
+    employee = get_object_or_404(Employee,pk=pk)
+    return render(request, 'attendances/salary_detail.html',{'employee':employee})
