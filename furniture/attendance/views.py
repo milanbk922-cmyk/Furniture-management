@@ -118,8 +118,51 @@ def save_employee_money(request):
     return redirect(f'/sidebar/attendance/?date={selected_date}')
 
 def monthly_salary_list(request):
-    employees = Employee.objects.filter(status=True)
-    return render(request, 'attendances/monthlysalary.html',{'employees':employees})
+    today = timezone.localdate()
+    #Default to hte current month
+    month = today.month
+    year = today.year
+
+    if request.method== "POST":
+        month = int(request.POST.get("month", today.month))
+        year = int(request.POST.get("year", today.year))
+        employees = Employee.objects.filter(status=True)
+        for employee in employees:
+            try:
+                calculate_employee_salary(employee, month, year)
+            except ValidationError as error:
+                messages.error(
+                    request,
+                    f"{employee.name}: {error}"
+                )
+        messages.success(
+            request,
+            "Monthly salary calculation have been processed."
+        )
+
+        return redirect(
+            f"{request.path}?month={month}&year={year}" 
+        )
+
+    # Read selected month and year from the URL
+    month = int(request.GET.get("month", month))
+    year = int(request.GET.get("year", year))
+
+    salary_records = MonthlySalary.objects.filter(
+        month = month,
+        year = year
+    ).select_related("employee")
+
+    context = {
+        "active_employees" : Employee.objects.filter(
+            status=True
+        ).count(),
+        "salary_records":salary_records,
+        "month":month,
+        "year":year,
+        "employees":Employee.objects.filter(status=True)
+    }
+    return render(request, 'attendances/monthlysalary.html', context)
 
 def salary_detail(request,pk):
     employee = get_object_or_404(Employee,pk=pk)
