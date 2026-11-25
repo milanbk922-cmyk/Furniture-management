@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from datetime import date
 from django.utils.dateparse import parse_date
 from django.utils import timezone
 from django.core.exceptions import ValidationError
@@ -166,4 +167,30 @@ def monthly_salary_list(request):
 
 def salary_detail(request,pk):
     employee = get_object_or_404(Employee,pk=pk)
-    return render(request, 'attendances/salary_detail.html',{'employee':employee})
+    today = timezone.localdate()
+    try:
+        month = int(request.GET.get("month",today.month))
+        year = int(request.GET.get("year",today.year))
+        date(year, month, 1)
+    except(ValueError, TypeError):
+        month = today.month
+        year = today.year
+    attendance_records = Attendance.objects.filter(
+         employee=employee,
+         date__year=year,
+         date__month=month
+     ).order_by("date")
+    advances = EmployeeMoneyTaken.objects.filter(
+        employee=employee,
+        date__year=year,
+        date__month=month
+    )
+    context = {
+        "employee": employee,
+        "month":month,
+        "year":year,
+        "selected_date":date(year,month,1),
+        "attendance_records":attendance_records,
+        "advances":advances,
+    }
+    return render(request, 'attendances/salary_detail.html',context)
