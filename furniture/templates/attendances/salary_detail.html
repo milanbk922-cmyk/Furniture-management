@@ -1,5 +1,5 @@
 {%extends "base.html"%}
-
+{%load nepali_filters%}
 {%block navbar%}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <header class="attendance_nav">
@@ -37,6 +37,11 @@
             <h3 id="pickerYear">2026</h3>
             <button type="button" id="nextYear">❯</button>
         </div>
+        <div
+            id ="monthPickerData"
+            data-month="{{month}}"
+            data-year="{{year}}">
+        </div>
         <div class="months-grid">
             {% for m in "123456789012"|make_list %}
             <button
@@ -49,5 +54,67 @@
         </div>
     </div>
 </div>
+
+<div class="attendance-stats">
+
+    <div class="attendance-stat present">
+        <h2>{{ attendance_summary.present }}</h2>
+        <p>Present</p>
+    </div>
+
+    <div class="attendance-stat absent">
+        <h2>{{ attendance_summary.absent }}</h2>
+        <p>Absent</p>
+    </div>
+
+    <div class="attendance-stat partial">
+        <h2>{{ attendance_summary.partial }}</h2>
+        <p>Partial</p>
+        <span>1–9 Hours</span>
+    </div>
+
+</div>
+
+<section class="salary-summary">
+
+    <h3>Salary Summary</h3>
+
+    <div class="salary-row">
+        <span>Daily Salary</span>
+        <strong>Rs. {{ daily_salary|nepali_comma}}</strong>
+    </div>
+
+    <div class="salary-row">
+        <span>Total Working Hours</span>
+        <strong>{{ total_hours }} hours</strong>
+    </div>
+
+    <div class="salary-row">
+        <span>Earned Salary</span>
+        <strong>Rs. {{ gross_salary|nepali_comma}}</strong>
+    </div>
+
+    <div class="salary-row deduction">
+        <span>Advance Taken</span>
+        <strong>- Rs. {{ advance_amount|nepali_comma}}</strong>
+    </div>
+
+    <div class="salary-divider"></div>
+
+    <div class="salary-row payable">
+        <span>Payable Salary</span>
+        <strong>Rs. {{ payable_salary|nepali_comma}}</strong>
+    </div>
+
+    {% if payable_salary < 0 %}
+        <p class="salary-warning">
+            Advances exceed earned salary by
+            Rs. {{ payable_salary|stringformat:"s"|slice:"1:" }}.
+            This amount should be carried forward.
+        </p>
+    {% endif %}
+
+</section>
+
 
 {%endblock%}

@@ -891,7 +891,7 @@ button[name="edit_employee"]{
     align-items: center;
     gap: 10px;
     padding: 5px;
-    background: #f8fbff;
+    background: #eff5fc;
     border: 1px solid #dce8f5;
     border-radius: 12px;
     font-size: 20px;
@@ -911,8 +911,7 @@ button[name="edit_employee"]{
     display: none;
     position: absolute;
     top: 55px;
-    left: 0;
-    width: 100%;
+    width: 90%;
     background: white;
     padding: 16px;
     border: 1px solid #e1e8f0;
@@ -970,4 +969,117 @@ button[name="edit_employee"]{
     background: #1769d2;
     color: white;
     border-color: #1769d2;
+}
+/* attendance status cards */
+
+.attendance-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.attendance-stat {
+    padding: 17px 12px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.attendance-stat h2 {
+    font-size: 25px;
+    margin: 0 0 5px;
+}
+
+.attendance-stat p {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 5px;
+}
+
+.attendance-stat span {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.attendance-stat.present {
+    background: #e5f7ef;
+    color: #159568;
+    border-color: #c9eddd;
+}
+
+.attendance-stat.absent {
+    background: #fff0f0;
+    color: #e34b55;
+    border-color: #f8dada;
+}
+
+.attendance-stat.partial {
+    background: #eaf2ff;
+    color: #2876d8;
+    border-color: #d4e4ff;
+}
+/* salary summary */
+
+.salary-summary {
+    background: #f8fbfe;
+    border: 1px solid #e5edf5;
+    border-radius: 14px;
+    padding: 17px;
+    margin: 18px 0;
+    box-shadow: 0 3px 12px rgba(30, 60, 90, 0.04);
+}
+
+.salary-summary h3 {
+    font-size: 17px;
+    color: #243e60;
+    margin: 0 0 18px;
+}
+
+.salary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    font-size: 13px;
+}
+
+.salary-row span {
+    color: #64748b;
+}
+
+.salary-row strong {
+    color: #263b55;
+    text-align: right;
+}
+
+.salary-row.deduction strong {
+    color: #e34b55;
+}
+
+.salary-divider {
+    height: 1px;
+    background: #e8edf3;
+    margin: 17px 0;
+}
+
+.salary-row.payable {
+    margin-bottom: 3px;
+}
+
+.salary-row.payable span,
+.salary-row.payable strong {
+    color: #159568;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.salary-warning {
+    color: #b45309;
+    background: #fff7ed;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: 15px;
 }

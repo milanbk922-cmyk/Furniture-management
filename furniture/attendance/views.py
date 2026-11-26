@@ -6,7 +6,8 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.views.decorators.http import require_POST
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+from django.db.models import Count, Q, Sum
 
 from employees.models import Employee
 from .models import MonthlySalary
@@ -180,11 +181,44 @@ def salary_detail(request,pk):
          date__year=year,
          date__month=month
      ).order_by("date")
+    attendance_summary= attendance_records.aggregate(
+        present=Count("id", filter=Q(status=10)),
+        absent = Count("id", filter=Q(status=0)),
+        partial=Count("id", filter=Q(status__gte=1, status__lte=9)),
+    )
     advances = EmployeeMoneyTaken.objects.filter(
         employee=employee,
         date__year=year,
         date__month=month
     )
+    # Total hours worked in the selected month
+    total_hours = attendance_records.aggregate(
+        total = Sum("status")
+    )["total"] or 0
+
+    #Employee's daily salary
+    daily_salary = employee.salary
+    # Calculate hourly rate
+    hourly_rate = daily_salary / Decimal("10")
+    # Calculate earned salary
+    gross_salary=(
+        hourly_rate * Decimal(total_hours)
+    ).quantize(
+        Decimal("0.01"),
+        rounding=ROUND_HALF_UP
+    )
+    # Calculate total advances
+    advance_amount= advances.aggregate(
+        total=Sum("amount")
+    )["total"] or Decimal("0.00")
+    # Calculate remaining payable salary
+    payable_salary = (
+        gross_salary - advance_amount
+    ).quantize(
+        Decimal("0.01"),
+        rounding=ROUND_HALF_UP
+    )
+
     context = {
         "employee": employee,
         "month":month,
@@ -192,5 +226,12 @@ def salary_detail(request,pk):
         "selected_date":date(year,month,1),
         "attendance_records":attendance_records,
         "advances":advances,
+        "attendance_summary":attendance_summary,
+        "daily_salary": daily_salary,
+        "total_hours": total_hours,
+        "hourly_rate": hourly_rate,
+        "gross_salary": gross_salary,
+        "advance_amount": advance_amount,
+        "payable_salary": payable_salary,
     }
     return render(request, 'attendances/salary_detail.html',context)
