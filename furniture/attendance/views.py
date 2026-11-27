@@ -219,6 +219,70 @@ def salary_detail(request,pk):
         rounding=ROUND_HALF_UP
     )
 
+    # Get the existing monthly salary record
+    salary_record = MonthlySalary.objects.filter(
+        employee=employee,
+        month=month,
+        year=year
+    ).first()
+    # Handle payment submission
+    if request.method =="POST" and request.POST.get("action") == "mark_paid":
+        if salary_record and salary_record.payment_status =="paid":
+            messages.info(request, "This salary has already been paid.")
+        elif payable_salary < Decimal("0.00"):
+            messages.error(
+                request,
+                "Payment cannot be complete because advances exceed earned salary."
+            )
+        else:
+            with transaction.atomic():
+                salary_record, created = MonthlySalary.objects.get_or_create(
+                    employee=employee,
+                    month=month,
+                    year=year,
+                    defaults={
+                        "daily_salary": daily_salary,
+                        "recorded_days": attendance_records.count(),
+                        "total_hours": total_hours,
+                        "gross_salary": gross_salary,
+                        "advance_amount": advance_amount,
+                        "payable_amount": payable_salary,
+                    }
+                )
+                # Refresh and check the record before making it paid
+                salary_record=MonthlySalary.objects.select_for_update().get(
+                    pk=salary_record.pk
+                )
+                if salary_record.payment_status == "paid":
+                    messages.info(request, "This salary has already been paid.")
+                else:
+                    # save the final salary snapshot
+                    salary_record.daily_salary = daily_salary
+                    salary_record.recorded_days = attendance_records.count()
+                    salary_record.total_hours = total_hours
+                    salary_record.gross_salary = gross_salary
+                    salary_record.advance_amount = advance_amount
+                    salary_record.payable_amount = payable_salary
+
+                    salary_record.payment_status = "paid"
+                    salary_record.paid_at = timezone.now()
+
+                    salary_record.save()
+                    messages.success(
+                        request,
+                        f"Salary paid successfully to {employee.name}."
+                    )
+        return redirect(
+            f"{request.path}?month={month}&year={year}"
+        )
+    # Display saved salary values for already-paid records
+    if salary_record and salary_record.payment_status == "paid":
+
+        daily_salary = salary_record.daily_salary
+        total_hours = salary_record.total_hours
+        gross_salary = salary_record.gross_salary
+        advance_amount = salary_record.advance_amount
+        payable_salary = salary_record.payable_amount
     context = {
         "employee": employee,
         "month":month,
@@ -233,5 +297,6 @@ def salary_detail(request,pk):
         "gross_salary": gross_salary,
         "advance_amount": advance_amount,
         "payable_salary": payable_salary,
+        "salary_record": salary_record,
     }
     return render(request, 'attendances/salary_detail.html',context)

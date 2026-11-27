@@ -116,5 +116,54 @@
 
 </section>
 
+<section class="payment-section">
+
+    <h3>Payment Status</h3>
+
+    {% if salary_record and salary_record.payment_status == "paid" %}
+        <div class="payment-status paid">
+            <span>✓</span>
+            <div>
+                <strong>Paid</strong>
+                <p>Payment completed successfully.</p>
+            </div>
+        </div>
+
+        <div class="payment-date">
+            Paid on:
+            {{ salary_record.paid_at|date:"d M Y, h:i A" }}
+        </div>
+
+    {% else %}
+        <div class="payment-status pending">
+            <span>◷</span>
+            <div>
+                <strong>Pending</strong>
+                <p>Salary payment has not been completed.</p>
+            </div>
+        </div>
+
+        {% if payable_salary >= 0 %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="mark_paid">
+                <button
+                    type="submit"
+                    class="mark-paid-btn"
+                    onclick="return confirm('Are you sure you want to mark this salary as paid?');"
+                >
+                    Mark as Paid
+                </button>
+            </form>
+
+        {% else %}
+            <p class="payment-warning">
+                Payment cannot be completed until the advance balance is settled.
+            </p>
+        {% endif %}
+    {% endif %}
+
+</section>
+
 
 {%endblock%}

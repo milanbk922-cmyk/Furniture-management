@@ -1083,3 +1083,85 @@ button[name="edit_employee"]{
     font-size: 12px;
     margin-top: 15px;
 }
+
+/* payment status */
+
+.payment-section {
+    background: #ffffff;
+    border: 1px solid #e5edf5;
+    border-radius: 14px;
+    padding: 17px;
+    margin: 18px 0;
+}
+
+.payment-section h3 {
+    font-size: 17px;
+    color: #243e60;
+    margin: 0 0 16px;
+}
+
+.payment-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.payment-status > span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.payment-status strong {
+    font-size: 14px;
+}
+
+.payment-status p {
+    font-size: 12px;
+    margin: 4px 0 0;
+}
+
+.payment-status.paid {
+    background: #e5f7ef;
+    color: #159568;
+    border-radius:14px;
+}
+
+.payment-status.pending {
+    background: #fff6e7;
+    color: #d58a16;
+    border-radius:14px;
+}
+
+.payment-date {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.mark-paid-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #159568;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mark-paid-btn:hover {
+    background: #117b57;
+}
+
+.payment-warning {
+    color: #b45309;
+    background: #fff7ed;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin-top: 12px;
+}
