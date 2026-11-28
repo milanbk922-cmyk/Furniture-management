@@ -162,3 +162,30 @@ function toggleMoney(sectionId, button) {
         button.classList.remove("active");
     }
 }
+
+// Search employees
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("employeeSearch");
+
+    searchInput.addEventListener("input", function () {
+
+        const searchValue = this.value.trim().toLowerCase();
+
+        document.querySelectorAll(".employee").forEach(employee => {
+
+            const employeeName = employee
+                .querySelector(".employee-info h3")
+                .textContent.trim().toLowerCase();
+
+            employee.style.display = employeeName.includes(searchValue)
+                ? "flex"
+                : "none";
+
+        });
+
+    });
+
+});
+
